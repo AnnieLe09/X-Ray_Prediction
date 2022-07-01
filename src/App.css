@@ -1,0 +1,17 @@
+:root {
+  --blue: #512da8;
+  --grey: rgba(255, 255, 255, 0.5);
+  --orange: #FE9312;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.page{
+  height: 100vh;
+  background-color: #512da8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
