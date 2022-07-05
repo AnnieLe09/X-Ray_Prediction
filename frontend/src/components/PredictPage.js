@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './css/PredictPage.css';
+import '../App.css';
 
 
 function PredictPage() {
@@ -33,7 +34,7 @@ function PredictPage() {
           .catch((err) => console.log(err));
       };
   return (
-    <div className="container">
+    <div className="main-container">
           <h1 className="heading">Add your Image</h1>
           <div className="img-holder">
             <img src={img} alt="" id="img" className="img" />

@@ -2,16 +2,32 @@
   --blue: #512da8;
   --grey: rgba(255, 255, 255, 0.5);
   --orange: #FE9312;
+  --normal-font: 16;
+  --small-font: 13;
+  --large-font: 24;
 }
 *{
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 .page{
   height: 100vh;
-  background-color: #512da8;
+  background-color: var(--blue);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.main-container{
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  height: 600px;
+  width: 500px;
+  border-radius: 10px;
+  background-color: var(--grey);
+}
+.no-link{
+  text-decoration: none;
+  color:white;
 }

@@ -1,0 +1,106 @@
+.login-container{
+  padding-top: 30px;
+}
+  .form {
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    align-items: center;
+    width: 90%;
+    height: 100%;
+  }
+  .login-title {
+    font-size: 3rem;
+    width: 80%;
+    margin-bottom: 50px;
+    color: black;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-top: 30px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+  }
+   .form-input {
+    display: block;
+    padding-left: 10px;
+    outline: none;
+    border-radius: 2px;
+    height: 50px;
+    width: 100%;
+    border: none;
+  }
+  
+  .form-input::placeholder {
+    color: #595959;
+    font-size: 15px;
+  }
+  .form-inputs {
+    margin-bottom: 0.5rem;
+    width: 80%;
+  }
+  
+  .form-inputs p {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #f00e0e;
+  }
+  
+  .form-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .login-btns{
+    display:flex;
+    justify-content: space-between;
+    width: calc(80% + 10px);
+    margin-top: 20px;
+  }
+  .login-btns .login-btn {
+    width: 47%;
+    height: 50px;
+    border-radius: 2px;
+    background: var(--blue);
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .login-btns .login-btn:hover {
+    cursor: pointer;
+    background: linear-gradient(
+      90deg,
+      rgb(78, 45, 168) 0%,
+      rgb(40, 20, 130) 100%
+    );
+    transition: all 0.4s ease-out;
+  }
+  .login-btns .signup-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:47%;
+    height: 50px;
+    border-radius: 2px;
+    background: var(--orange);
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .login-btns .signup-btn:hover {
+    cursor: pointer;
+    background: linear-gradient(
+      90deg,
+      rgb(255, 120, 0) 0%,
+      rgb(255, 150, 54) 100%
+    );
+    transition: all 0.4s ease-out;
+  }
+

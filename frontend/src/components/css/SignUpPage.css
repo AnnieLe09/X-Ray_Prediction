@@ -1,0 +1,105 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+  }
+  .signup-form {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .signup-title {
+    font-size: 3rem;
+    width: 80%;
+    margin-bottom: 15px;
+    color: black;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-top: 25px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+  }
+
+   .form-input2 {
+    display: block;
+    padding-left: 10px;
+    outline: none;
+    border-radius: 2px;
+    height: 40px;
+    width: 100%;
+    border: none;
+    font-size: var(--normal-font);
+  }
+  
+  .form-input2::placeholder {
+    color: #595959;
+    font-size: var(--normal-font);
+  }
+  .form-inputs2 {
+    margin-bottom: 0.5rem;
+    width: 80%;
+  }
+  
+  .form-inputs2 p {
+    font-size: var(--normal-font);
+    margin-top: 0.5rem;
+    color: #f00e0e;
+  }
+  .form-inputs3 {
+    margin-bottom: 0.5rem;
+    width: 40%;
+    display: inline-block;
+  }
+  .form-inputs4 {
+    margin-bottom: 0.5rem;
+    width: 50%;
+    margin-left: 10%;
+    display: inline-block;
+  }
+  
+  .form-inputs3 p {
+    font-size: var(--normal-font);
+    margin-top: 0.5rem;
+    color: #f00e0e;
+  }
+  .form-label2 {
+    display: inline-block;
+    font-size:var(--small-font);
+    margin-bottom: 6px;
+    color: black;
+    font-weight: bold;
+  }
+  .btn-container2{
+    width: 80%;
+    height: 100%;
+  }
+  .form-input-btn22 {
+    width:50%;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 2px;
+    background: linear-gradient(
+      90deg,
+      rgb(78, 45, 168) 0%,
+      rgb(40, 20, 130) 100%
+    );
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    margin-right: 5%;
+  }
+  
+  .form-input-btn22:hover {
+    cursor: pointer;
+    background:var(--blue);
+    transition: all 0.4s ease-out;
+  }
+  .signup-area2{
+    width: 80%;
+    height: 100%;
+
+  }
