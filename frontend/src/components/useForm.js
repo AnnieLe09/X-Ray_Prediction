@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Constants from '../Constants';
 const useForm = (callback, validate) => {
   //Date birth = new Date(2000, 1, 1);
   const navigate = useNavigate();
@@ -33,7 +34,19 @@ const useForm = (callback, validate) => {
     setIsSubmitting(true);
     console.log(errors.isError);
     if(errors.isError === false){
-      axios.post("http://localhost:8000/users/register", values).then(res=>{
+      fetch(Constants.serverLink + 'signup', {
+        method:"POST",
+        mode: "no-cors",
+        headers: { 
+          'Accept': 'application/json',
+        },
+        body: values
+      }).then((res) => {
+        window.sessionStorage.setItem(Constants.userCode, JSON.stringify(values.username));
+        window.sessionStorage.setItem("isLogin", "true");
+        navigate('/');
+      })
+      /*axios.post("http://localhost:8000/users/register", values).then(res=>{
       const {msg} = res.data;
       if(msg === 1){
          window.sessionStorage.setItem("user19120000", JSON.stringify(values));
@@ -46,7 +59,8 @@ const useForm = (callback, validate) => {
       else{
         alert("Tên đăng nhập đã tồn tại!");
       }
-    });
+    });*/
+
     }
   };
 

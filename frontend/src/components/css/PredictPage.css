@@ -1,10 +1,11 @@
 
   .heading{
+    font-size: 3rem;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Dancing Script', cursive;
     margin-top: 1rem;
     font-weight: bold;
-  
+
   }
   .img-holder{
     margin: auto;
@@ -33,12 +34,15 @@
   .image-upload{
     margin: auto;
     width: 200px;
-      height: 50px;
+    height: 50px;
     color: white;
     border-radius: 10px;
     background-color: black;
     text-align: center;
     cursor: pointer;
+    display:flex;
+    justify-content: center;
+    align-items: center;
   }
   #result-section{
     display:flex;
@@ -53,9 +57,18 @@
     font-size: x-large;
     font-family: 'Pacifico', cursive;
   }
-  #result-section p{
+  #first-res{
     font-size: xx-large;
+    font-weight: bolder;
+    color:red;
+  }
+  #res-container{
+    display:flex;
+  }
+  #res-container p{
+    font-size: x-large;
     font-weight: bold;
+    margin: auto 10px;
   }
 
   

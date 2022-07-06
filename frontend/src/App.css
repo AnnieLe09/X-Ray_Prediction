@@ -2,6 +2,7 @@
   --blue: #512da8;
   --grey: rgba(255, 255, 255, 0.5);
   --orange: #FE9312;
+  --purple: #A896D4;
   --normal-font: 16;
   --small-font: 13;
   --large-font: 24;
@@ -22,7 +23,7 @@
 
 .main-container{
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
-  height: 600px;
+  height: 650px;
   width: 500px;
   border-radius: 10px;
   background-color: var(--grey);
@@ -30,4 +31,13 @@
 .no-link{
   text-decoration: none;
   color:white;
+}
+@media only screen and (max-width: 700px){
+  .page{
+    background-color:var(--purple);
+  }
+  .main-container{
+    background-color: var(--purple);
+    box-shadow: none;
+  }
 }

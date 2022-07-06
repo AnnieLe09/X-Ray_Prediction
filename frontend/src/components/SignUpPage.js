@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import Dropdown from './Dropdown';
 import validate from './validateInfo';
 import useForm from './useForm';
+import Navbar from './Navbar';
 
 function SignUpPage() {
   const submitForm = ()=>{
@@ -15,7 +16,8 @@ function SignUpPage() {
     validate
   );
   return (
-    <div>
+    <div className="page">
+    <Navbar />
       <div className="main-container signup-container">
           <form className='signup-form' onSubmit={handleSubmit}>
             <h1 className='signup-title'>Sign Up</h1>

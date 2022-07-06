@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Constants from '../Constants';
+import Navbar from './Navbar';
 
 function LogInPage() {
     const { register, handleSubmit, errors } = useForm();
@@ -12,23 +14,33 @@ function LogInPage() {
     
     const onHandleSubmit = (data) => {
       console.log(data);
-      axios.post("http://localhost:8000/users/login", data).then(res => {
-        const { isLogin, user } = res.data;
+      fetch(Constants.serverLink + 'x-ray2', {
+        method:"POST",
+        mode: "no-cors",
+        headers: { 
+          'Accept': 'application/json',
+        },
+        body: data
+      }).then((res) => {
+        window.sessionStorage.setItem(Constants.userCode, JSON.stringify(data.username));
+        window.sessionStorage.setItem("isLogin", "true");
+        navigate('/');
+        /*const { code, user } = res.data;
         console.log(res.data);
-        if (isLogin === 1) {
-          window.sessionStorage.setItem("user19120000", JSON.stringify(user));
+        if (code === Constants.login.SUCCESS_CODE) {
+          window.sessionStorage.setItem(Constants.userCode, JSON.stringify(user));
           window.sessionStorage.setItem("isLogin", "true");
           navigate('/');
         }
-        else if (isLogin === 2) {
-          alert("Không tồn tại tên đăng nhập!");
-        }
-        else {
-          alert("Sai mật khẩu!");
-        }
-      });
+        else if (code === Constants.login.FAILURE_CODE) {
+          alert("Wrong username or password!");
+        }*/
+      })
+      .catch((err) => console.log(err));
     }
   return (
+    <div className="page">
+    <Navbar />
       <div className='main-container login-container'>
         <form className='form' onSubmit={handleSubmit(onHandleSubmit)}>
           <h1 className='login-title'>Log In</h1>
@@ -45,6 +57,7 @@ function LogInPage() {
             <Link className='no-link signup-btn' to="/signup">Sign Up</Link>
           </div>
         </form>
+      </div>
       </div>
   );
 }

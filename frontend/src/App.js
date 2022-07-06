@@ -10,8 +10,8 @@ import SignUpPage from "./components/SignUpPage";
 export class App extends Component {
   render() {
     return (
-      <div className="page">
-        <Navbar />
+      <div >
+       
         <Router>
           <div className="App">
             <Routes>
