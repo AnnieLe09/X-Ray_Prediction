@@ -1,5 +1,5 @@
 var Constants = module.exports = {
-    serverLink: "http://nghia.ap.ngrok.io/",
+    serverLink: "https://nghia.ap.ngrok.io/",
     userCode: "user19120000",
     login:{
         SUCCESS_CODE: 0,

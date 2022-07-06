@@ -1,6 +1,6 @@
 export default function validateInfo(values) {
   let errors = {isError: false};
-  if (!values.name) {
+  /*if (!values.name) {
     errors.name = 'Hãy nhập Họ và tên';
     alert("Hãy nhập Họ và tên");
     errors.isError = true;
@@ -9,8 +9,8 @@ export default function validateInfo(values) {
     errors.gender = 'Hãy chọn giới tính';
     alert("Hãy chọn giới tính");
      errors.isError = true;
-  }
-  else if (!values.username) {
+  }*/
+  if (!values.username) {
     errors.username = 'Hãy nhập Tên đăng nhập';
     alert("Hãy nhập Tên đăng nhập");
      errors.isError = true;
@@ -25,7 +25,7 @@ export default function validateInfo(values) {
      errors.isError = true;
   }
 
-  else if (!values.email) {
+  /*else if (!values.email) {
     errors.email = 'Hãy nhập Email';
     alert("Hãy nhập Email");
      errors.isError = true;
@@ -33,7 +33,7 @@ export default function validateInfo(values) {
     errors.email = 'Email không hợp lệ';
     alert("Email không hợp lệ");
      errors.isError = true;
-  }
+  }*/
   else if (!values.password) {
     errors.password = 'Hãy nhập Mật khẩu';
     alert("Hãy nhập Mật khẩu");

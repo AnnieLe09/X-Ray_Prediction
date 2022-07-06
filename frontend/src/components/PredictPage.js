@@ -21,36 +21,12 @@ function PredictPage() {
       };
     async function  uploadImage(img){
         const data = new FormData();
-        console.log(img);
         data.append('img', img);
-        axios.post( Constants.serverLink + 'x-ray3');
-        /*axios({
-          method: 'get',
-          url: Constants.serverLink + 'x-ray3',
-          headers: { 
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Content-Type': 'multipart/form-data' 
-          }
-        })*/
-        /*axios({
-          method: 'post',
-          url: Constants.serverLink + 'x-ray4',
-          
-          headers: { 
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Content-Type': 'multipart/form-data' 
-          },
-          data: "{}",
-        })
-          .then((response) => console.log(response))
-          .catch((err) => console.log(err));*/
-          /*await fetch(Constants.serverLink + 'x-ray2', {
+          await fetch(Constants.serverLink + 'x-ray', {
             method:"POST",
-            mode: "no-cors",
             body: data
-          }).then(response => {
-            console.log(response.json());
-            let res = ["Nodule", "Edema", "Effusion"];
+          }).then(res=>res.json()).then(response => {
+            let res = response.candidate;
             setResult(res);
             let firstRes = document.getElementById("first-res");
             let secondRes = document.getElementById("second-res");
@@ -59,17 +35,7 @@ function PredictPage() {
             secondRes.innerHTML = res[1];
             thirdRes.innerHTML = res[2];
           })
-          .catch((err) => console.log(err));*/
-          /*fetch(Constants.serverLink + 'x-ray2', {
-            method:"POST",
-            mode: 'cors',
-            credentials: 'include',
-            headers: { 
-              
-              'Content-Type': 'multipart/form-data' 
-            },
-            body: data
-          }).then(response => { return response.json();}).then(data=> console.log(data)).catch((err) => console.log(err));*/
+          .catch((err) => console.log(err));
       };
   return (
     <div className="page">

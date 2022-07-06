@@ -12,21 +12,17 @@ function LogInPage() {
     const { register, handleSubmit, errors } = useForm();
     const navigate = useNavigate();
     
-    const onHandleSubmit = (data) => {
-      console.log(data);
-      fetch(Constants.serverLink + 'x-ray2', {
+    const onHandleSubmit = (user) => {
+      const data = new FormData();
+      data.append('username', user.username);
+      data.append('password', user.password);
+      fetch(Constants.serverLink + 'login', {
         method:"POST",
-        mode: "no-cors",
-        headers: { 
-          'Accept': 'application/json',
-        },
         body: data
-      }).then((res) => {
-        window.sessionStorage.setItem(Constants.userCode, JSON.stringify(data.username));
-        window.sessionStorage.setItem("isLogin", "true");
-        navigate('/');
-        /*const { code, user } = res.data;
-        console.log(res.data);
+      }).then(res=>res.json()).then((res) => {
+
+        const { code, user } = res;
+        console.log(res);
         if (code === Constants.login.SUCCESS_CODE) {
           window.sessionStorage.setItem(Constants.userCode, JSON.stringify(user));
           window.sessionStorage.setItem("isLogin", "true");
@@ -34,7 +30,7 @@ function LogInPage() {
         }
         else if (code === Constants.login.FAILURE_CODE) {
           alert("Wrong username or password!");
-        }*/
+        }
       })
       .catch((err) => console.log(err));
     }
