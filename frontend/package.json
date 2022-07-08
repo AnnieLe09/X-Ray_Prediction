@@ -9,6 +9,7 @@
     "axios": "^0.27.2",
     "cors": "^2.8.5",
     "firebase": "^9.9.0",
+    "framer-motion": "^6.4.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^7.33.0",

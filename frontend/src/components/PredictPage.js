@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import './css/PredictPage.css';
 import '../App.css';
 import Constants from "../Constants";
 import Navbar from "./Navbar";
-import Firebase from "../Firebase";
-
+import {storage, firebase} from "../Firebase";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 function PredictPage() {
     const [img, setImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
     const [result, setResult] = useState(null);
     const [file, setFile] = useState(null);
-    const [link, setLink] = useState(null);
     const tmp = window.sessionStorage.getItem(Constants.userCode);
     const user = JSON.parse(tmp); 
     const imageHandler = (e) => {
@@ -24,16 +23,35 @@ function PredictPage() {
         let file = e.target.files[0];
         setFile(file);
         reader.readAsDataURL(file);
-        uploadImage(file);
+        requestUploadImage(file);
     };
-    const saveImage = (e) => {
+    function saveImage(e) {
       if(file !== null && user !== null){
-
-        Firebase.saveImage(link, file, user.username + (new Date()).toString());
+        let fileName = user.username + (new Date).toString();
+        const storageRef = ref(storage, fileName);
+        const uploadTask = uploadBytes(storageRef, file).then((snapshot) => {
+            console.log('Uploaded a blob or file!');
+            getDownloadURL(snapshot.ref).then((downloadURL) => {console.log(downloadURL);requestSaveImage(downloadURL);});
+        });
       }
     };
-    async function  uploadImage(img){
-        
+    async function requestSaveImage(url){
+      const data = new FormData();
+      data.append('username', user.username);
+      data.append('password', user.password);
+      data.append('link', url);
+      data.append('label0', result[0]);
+      data.append('label1', result[1]);
+      data.append('label2', result[2]);
+        await fetch(Constants.serverLink + 'save', {
+          method:"POST",
+          body: data
+        }).then(res=>res.json()).then(response => {
+          document.getElementById("save-button").innerHTML = "Đã lưu";
+        })
+        .catch((err) => console.log(err));
+    }
+    async function  requestUploadImage(img){
         const data = new FormData();
         data.append('img', img);
           await fetch(Constants.serverLink + 'x-ray', {
@@ -71,8 +89,8 @@ function PredictPage() {
               <i className="material-icons">add_photo_alternate</i>
               Choose
             </label>
-            <button className="image-save" onClick={saveImage}>
-              <i className="material-icons">add_photo_alternate</i>
+            <button id="save-button" className="image-save" onClick={saveImage}>
+            <i className="fa-solid fa-floppy-disk fa-xl"></i>
               Save
             </button>
           </div>
