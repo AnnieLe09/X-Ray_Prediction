@@ -7,6 +7,7 @@ import PredictPage from "./components/PredictPage";
 import LogInPage from "./components/LogInPage";
 import SignUpPage from "./components/SignUpPage";
 import HistoryPage from "./components/HistoryPage";
+import SearchPage from "./components/SearchPage";
 
 export class App extends Component {
   render() {
@@ -20,6 +21,7 @@ export class App extends Component {
               <Route path="/login" element={<LogInPage />} />
               <Route path="/signup" element={<SignUpPage />} />
               <Route path="/history" element={<HistoryPage />} />
+              <Route path="/search" element={<SearchPage />} />
             </Routes>
           </div>
         </Router>
