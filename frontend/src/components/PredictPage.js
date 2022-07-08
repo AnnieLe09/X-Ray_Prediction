@@ -4,11 +4,16 @@ import './css/PredictPage.css';
 import '../App.css';
 import Constants from "../Constants";
 import Navbar from "./Navbar";
+import Firebase from "../Firebase";
 
 
 function PredictPage() {
     const [img, setImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
     const [result, setResult] = useState(null);
+    const [file, setFile] = useState(null);
+    const [link, setLink] = useState(null);
+    const tmp = window.sessionStorage.getItem(Constants.userCode);
+    const user = JSON.parse(tmp); 
     const imageHandler = (e) => {
         const reader = new FileReader();
         reader.onload = () => {
@@ -16,10 +21,19 @@ function PredictPage() {
             setImg(reader.result)
           }
         };
-        reader.readAsDataURL(e.target.files[0]);
-        uploadImage(e.target.files[0]);
-      };
+        let file = e.target.files[0];
+        setFile(file);
+        reader.readAsDataURL(file);
+        uploadImage(file);
+    };
+    const saveImage = (e) => {
+      if(file !== null && user !== null){
+
+        Firebase.saveImage(link, file, user.username + (new Date()).toString());
+      }
+    };
     async function  uploadImage(img){
+        
         const data = new FormData();
         data.append('img', img);
           await fetch(Constants.serverLink + 'x-ray', {
@@ -57,6 +71,10 @@ function PredictPage() {
               <i className="material-icons">add_photo_alternate</i>
               Choose
             </label>
+            <button className="image-save" onClick={saveImage}>
+              <i className="material-icons">add_photo_alternate</i>
+              Save
+            </button>
           </div>
           {result !== null &&
           <div id="result-section">

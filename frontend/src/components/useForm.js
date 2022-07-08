@@ -33,18 +33,25 @@ const useForm = (callback, validate) => {
     setErrors(validate(values));
     setIsSubmitting(true);
     console.log(errors.isError);
-    if(errors.isError === false){
+    console.log(values);
+    if(errors.isError !== true){
+      const data = new FormData();
+      data.append('username', values.username);
+      data.append('password', values.password);
       fetch(Constants.serverLink + 'signup', {
         method:"POST",
-        mode: "no-cors",
-        headers: { 
-          'Accept': 'application/json',
-        },
-        body: values
-      }).then((res) => {
-        window.sessionStorage.setItem(Constants.userCode, JSON.stringify(values.username));
-        window.sessionStorage.setItem("isLogin", "true");
-        navigate('/');
+        body: data
+      }).then(res=>res.json()).then((res) => {
+        const { code, user } = res;
+        if (code === Constants.signup.SUCCESS_CODE){
+          window.sessionStorage.setItem(Constants.userCode, JSON.stringify(values.username));
+          window.sessionStorage.setItem("isLogin", "true");
+          navigate('/');
+        } 
+        else if (code === Constants.signup.FAILURE_CODE){
+          alert("Existing username!");
+        }
+        
       })
       /*axios.post("http://localhost:8000/users/register", values).then(res=>{
       const {msg} = res.data;

@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import PredictPage from "./components/PredictPage";
 import LogInPage from "./components/LogInPage";
 import SignUpPage from "./components/SignUpPage";
+import HistoryPage from "./components/HistoryPage";
 
 export class App extends Component {
   render() {
@@ -18,6 +19,7 @@ export class App extends Component {
               <Route path="/" exact element={<PredictPage />} />
               <Route path="/login" element={<LogInPage />} />
               <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/history" element={<HistoryPage />} />
             </Routes>
           </div>
         </Router>
