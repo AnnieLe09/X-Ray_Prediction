@@ -93,5 +93,17 @@
     font-weight: bold;
     margin: auto 10px;
   }
+  #loading{
+    margin:auto;
+    margin-top: 10px;
+    width: 79px;
+    height:79px;
+  }
+  .image-upload:hover{
+    transform: scale(1.05);
+  }
+  .image-save:hover{
+    transform: scale(1.05);
+  } 
 
   
