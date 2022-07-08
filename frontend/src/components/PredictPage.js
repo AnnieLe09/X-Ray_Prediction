@@ -6,11 +6,14 @@ import Constants from "../Constants";
 import Navbar from "./Navbar";
 import {storage, firebase} from "../Firebase";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import LoadingSpin from "react-loading-spin";
 
 function PredictPage() {
     const [img, setImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
     const [result, setResult] = useState(null);
     const [file, setFile] = useState(null);
+    const [saved, setSaved] = useState(false);
+    const [loading, setLoading] = useState(false);
     const tmp = window.sessionStorage.getItem(Constants.userCode);
     const user = JSON.parse(tmp); 
     const imageHandler = (e) => {
@@ -23,17 +26,24 @@ function PredictPage() {
         let file = e.target.files[0];
         setFile(file);
         reader.readAsDataURL(file);
+        setLoading(true);
         requestUploadImage(file);
     };
     function saveImage(e) {
-      if(file !== null && user !== null){
+      if(user === null){
+        alert("Please log in to save image!");
+        return;
+      }
+      if(file === null){
+        alert("Please choose file!");
+        return;
+      }
         let fileName = user.username + (new Date).toString();
         const storageRef = ref(storage, fileName);
         const uploadTask = uploadBytes(storageRef, file).then((snapshot) => {
             console.log('Uploaded a blob or file!');
             getDownloadURL(snapshot.ref).then((downloadURL) => {console.log(downloadURL);requestSaveImage(downloadURL);});
         });
-      }
     };
     async function requestSaveImage(url){
       const data = new FormData();
@@ -47,7 +57,9 @@ function PredictPage() {
           method:"POST",
           body: data
         }).then(res=>res.json()).then(response => {
-          document.getElementById("save-button").innerHTML = "Đã lưu";
+          //document.getElementById("save-button").innerHTML = "Saved";
+          setSaved(true);
+          alert("Image saved!");
         })
         .catch((err) => console.log(err));
     }
@@ -60,6 +72,8 @@ function PredictPage() {
           }).then(res=>res.json()).then(response => {
             let res = response.candidate;
             setResult(res);
+            setSaved(false);
+            setLoading(false);
             let firstRes = document.getElementById("first-res");
             let secondRes = document.getElementById("second-res");
             let thirdRes = document.getElementById("third-res");
@@ -73,7 +87,7 @@ function PredictPage() {
     <div className="page">
     <Navbar />
     <div className="main-container">
-          <h1 className="heading">Add your X-Ray image</h1>
+          <h1 className="heading">Add Your X-Ray Image</h1>
           <div className="img-holder">
             <img src={img} alt="" id="img" className="img" />
           </div>
@@ -90,8 +104,9 @@ function PredictPage() {
               Choose
             </label>
             <button id="save-button" className="image-save" onClick={saveImage}>
-            <i className="fa-solid fa-floppy-disk fa-xl"></i>
-              Save
+              {saved ===true && <p>Saved</p>}
+            {saved === false && <p><i className="fa-solid fa-floppy-disk fa-xl"></i>
+              Save</p>}
             </button>
           </div>
           {result !== null &&
@@ -104,6 +119,7 @@ function PredictPage() {
             </div>
           </div>}
           {result === null && <div id="result-section"><h3>The result will show here!</h3></div>}
+          {loading !== false && <div id = "loading"><LoadingSpin/></div>}
     </div>
     </div>
   );
