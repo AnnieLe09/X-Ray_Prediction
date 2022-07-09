@@ -44,9 +44,14 @@ const useForm = (callback, validate) => {
       }).then(res=>res.json()).then((res) => {
         const { code, user } = res;
         if (code === Constants.signup.SUCCESS_CODE){
-          window.sessionStorage.setItem(Constants.userCode, JSON.stringify(values.username));
+          let user = {
+            username: values.username,
+            password: values.password
+          }
+          window.sessionStorage.setItem(Constants.userCode, JSON.stringify(user));
           window.sessionStorage.setItem("isLogin", "true");
           navigate('/');
+          alert("You have signed up successfully!");
         } 
         else if (code === Constants.signup.FAILURE_CODE){
           alert("Existing username!");

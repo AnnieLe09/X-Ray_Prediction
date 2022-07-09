@@ -16,7 +16,6 @@ function Navbar() {
         </section></a>
         {user === null &&
         <section id= 'authen-section'>
-            <a href='/search'><button className='nav-btn signup-btn'>Search</button></a>
             <a href='/login'><button className='nav-btn signup-btn'>Log In</button></a>
             <a href='/signup'><button className = 'nav-btn signup-btn'>Sign Up</button></a>
         </section>

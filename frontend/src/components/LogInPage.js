@@ -11,7 +11,8 @@ import Navbar from './Navbar';
 function LogInPage() {
     const { register, handleSubmit, errors } = useForm();
     const navigate = useNavigate();
-    
+    const tmp = window.sessionStorage.getItem(Constants.userCode);
+    const user = JSON.parse(tmp);
     const onHandleSubmit = (user) => {
       const data = new FormData();
       data.append('username', user.username);
@@ -37,7 +38,7 @@ function LogInPage() {
   return (
     <div className="page">
     <Navbar />
-      <div className='main-container login-container'>
+    {user === null &&  <div className='main-container login-container'>
         <form className='form' onSubmit={handleSubmit(onHandleSubmit)}>
           <h1 className='login-title'>Log In</h1>
           <div className='form-inputs'>
@@ -53,7 +54,8 @@ function LogInPage() {
             <Link className='no-link signup-btn' to="/signup">Sign Up</Link>
           </div>
         </form>
-      </div>
+      </div>}
+     {user !== null && <h1>Page not found</h1>}
       </div>
   );
 }

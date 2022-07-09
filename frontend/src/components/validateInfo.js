@@ -20,8 +20,8 @@ export default function validateInfo(values) {
      errors.isError = true;
   }*/
   else if (!/^[A-Za-z]+/.test(values.username.trim())) {
-    errors.username = 'Tên đăng nhập không hợp lệ';
-    alert("Tên đăng nhập không hợp lệ");
+    errors.username = 'Invalid username!';
+    alert("Invalid username!");
      errors.isError = true;
   }
 
@@ -35,22 +35,22 @@ export default function validateInfo(values) {
      errors.isError = true;
   }*/
   else if (!values.password) {
-    errors.password = 'Hãy nhập Mật khẩu';
-    alert("Hãy nhập Mật khẩu");
+    errors.password = 'Please enter password!';
+    alert("Please enter password!");
      errors.isError = true;
   } else if (values.password.length < 6) {
-    errors.password = 'Mật khẩu cần tối thiểu 6 ký tự';
-    alert("Mật khẩu cần tối thiểu 6 ký tự");
+    errors.password = 'Password must contain at least 6 characters!';
+    alert("Password must contain at least 6 characters!");
      errors.isError = true;
   }
 
   else if (!values.password2) {
-    errors.password2 = 'Hãy nhập lại Mật khẩu';
-    alert("Hãy nhập lại Mật khẩu");
+    errors.password2 = 'Please enter password again!';
+    alert("Please enter password again!");
      errors.isError = true;
   } else if (values.password2 !== values.password) {
-    errors.password2 = 'Bạn đã nhập sai Mật khẩu';
-    alert("Bạn đã nhập sai Mật khẩu");
+    errors.password2 = '';
+    alert("Those passwords didn't match!");
      errors.isError = true;
   }
   return errors;
