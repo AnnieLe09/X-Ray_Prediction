@@ -16,11 +16,13 @@ function Navbar() {
         </section></a>
         {user === null &&
         <section id= 'authen-section'>
+            <a href='/search'><button className='nav-btn signup-btn'>Search</button></a>
             <a href='/login'><button className='nav-btn signup-btn'>Log In</button></a>
             <a href='/signup'><button className = 'nav-btn signup-btn'>Sign Up</button></a>
         </section>
         }
         {(user !== null) && <section id= 'authen-section'>
+            <a href='/search'><button className='nav-btn signup-btn'>Search</button></a>
             <a href='/history'><button className='nav-btn signup-btn'>History</button></a>
             <a href='/'><button className = 'nav-btn signup-btn' onClick={LogoutListener}>Sign Out</button></a>
         </section>}

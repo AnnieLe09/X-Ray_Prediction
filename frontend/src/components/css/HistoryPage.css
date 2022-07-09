@@ -51,3 +51,23 @@
   .history-info p{
     font-size: 16px;
   }
+
+  .main-container {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .seachbar {
+    border-radius: 5px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .seachbar select option {
+    font-size: large;
+  }
+
+  .seachbar select {
+    font-size: large;
+  }

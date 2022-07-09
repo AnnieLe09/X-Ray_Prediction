@@ -8,8 +8,6 @@ import HistoryTag from "./HistoryTag";
 
 function SearchPage() {
     const [historyTags, setHistoryTags] = useState(null);
-    const tmp = window.sessionStorage.getItem(Constants.userCode);
-    const user = JSON.parse(tmp);
     const [curLabel, setLabel] = useState(null);
     function requestSearch() {
         console.log("search " + curLabel);
@@ -45,27 +43,26 @@ function SearchPage() {
         }
     }
     useEffect(() => { requestSearch(); }, [curLabel]);
-    const all_labels = ['Atelectasis','Consolidation', 'Infiltration', 'Pneumothorax', 'Edema', 'Emphysema','Fibrosis', 
-              'Effusion', 'Pneumonia', 'Pleural_Thickening','Cardiomegaly', 'Nodule', 'Mass', 'Hernia']
+    const all_labels = ['Atelectasis', 'Consolidation', 'Infiltration', 'Pneumothorax', 'Edema', 'Emphysema', 'Fibrosis',
+        'Effusion', 'Pneumonia', 'Pleural_Thickening', 'Cardiomegaly', 'Nodule', 'Mass', 'Hernia']
 
     return (
         <div className="page">
             <Navbar />
-            {user !== null && (
-                <div className="main-container">
-                    <h1 className="heading">Search X-ray Image</h1>
-                    <select name="label" id="label" onChange={(event)=>setLabel(event.target.value)}>
-                        <option disabled selected>Chọn label</option>
+            <div className="main-container">
+                <h1 className="heading">Search X-ray Image</h1>
+                <div className="seachbar">
+                    <select name="label" onChange={(event) => setLabel(event.target.value)}>
+                        <option disabled selected>Options</option>
                         {all_labels.map(label => (
                             <option value={label}>{label}</option>
                         ))}
                     </select>
-                    <div className="imgs-container">
-                        {historyTags !== null && historyTags}
-                    </div>
                 </div>
-            )}
-            {user === null && <h1>Page not found</h1>}
+                <div className="imgs-container">
+                    {historyTags !== null && historyTags}
+                </div>
+            </div>
         </div>
     );
 }
